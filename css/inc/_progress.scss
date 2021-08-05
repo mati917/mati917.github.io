@@ -1,0 +1,134 @@
+#progress{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    main#progress__body{
+        padding: 20px 5px;
+        position: relative;
+
+        #tabs{
+            padding: 0;
+            // header
+            #progress__tabs-header{
+                height: 60px;
+                display: flex;
+                align-items: center;
+    
+                div.tab-header{
+                   width: calc(100% / 2);
+                   text-align: center;
+                   color: $col-2;
+                   font-size: 14px;
+                   font-weight: 600;
+                   cursor: pointer;
+                   i{
+                        display: block;
+                        margin-bottom: 5px;
+                        font-size: 16px;
+                    }
+                }
+                div.tab-header:hover{
+                    color: $col-9;
+                }
+                div.active{
+                    color: $col-10 !important;
+                }
+            }
+            // Indicator
+            #progress__tab-indicator{
+                width: calc(100% / 2);
+                height: 5px;
+                position: relative;
+                background-color: $col-10;
+                border-radius: 5px;
+                transition: all 500ms ease-in-out;
+            }
+            // Body
+            #progress__tabs-body{
+                position: relative;
+                height: calc(100% - 60px);
+                padding: 10px 0;
+    
+                .tab-body{
+                    position: absolute;
+                    top: 20px;
+                    opacity: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    margin-top: 5px;
+                    transform: scale(0.8);
+                    transition: opacity 300ms ease-in-out 0ms,
+                                transform 300ms ease-in-out 0ms;
+    
+                    // Timelines
+                    .row{
+                        position: relative;
+                        padding: 10px 0;
+                        .event{
+                            margin-bottom: 20px;
+                            padding: 10px;
+                            .checkpoint{
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background: $col-10;
+                                color: #fff;
+                                text-align: center;
+                                line-height: 20px;
+                                position: absolute;
+                                right: 10px;
+                                top: 10px;
+                            }
+                        }
+                    }
+                }
+                .tab-body::before{
+                    content: '';
+                    width: 2px;
+                    height: 100%;
+                    background: $col-2;
+                    z-index: 0;
+                    position: absolute;
+                    left: calc(50% - 1px);
+                }
+                @media only screen and (min-width: 576px){
+                    
+                    .tab-body{
+                        .event{
+                            width: 45%;
+                        }
+                        .event:nth-child(odd){
+                            margin-right: 55%;
+                            float: left;
+                            clear: right;
+                            .checkpoint{
+                                top: calc(50% - 10px);
+                                left: calc(calc(calc(100% / 9) * 10) - 9px);
+                            }
+                        }
+                        .event:nth-child(even){
+                            margin-left: 55%;
+                            float: right;
+                            clear: left;
+                            .checkpoint{
+                                top: calc(50% - 10px);
+                                left: calc(calc(100% / (-9)) - 11px);
+                            }
+                            
+                        }
+                    }
+                }
+                section.active{
+                    margin-top: 0;
+                    top: 0;
+                    opacity: 1;
+                    height: 100%;
+                    transform: scale(1);
+                    position: relative;
+                }
+            }
+        }
+    }
+}
